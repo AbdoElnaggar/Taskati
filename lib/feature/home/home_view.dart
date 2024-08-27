@@ -18,8 +18,6 @@ class home_view extends StatefulWidget {
 }
 
 class _home_viewState extends State<home_view> {
-
-
   @override
   Widget build(BuildContext context) {
      var box =Hive.box('userbox');

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utlise/function.dart';
 import 'package:taskati/core/utlise/navigator.dart';
 import 'package:taskati/feature/home/home_view.dart';
@@ -21,9 +22,8 @@ class _splash_viewState extends State<splash_view> {
   void initState() {
     
     super.initState();
-    var box=Hive.box('userbox');
     Future.delayed(Duration(seconds: 3),(){
-   pushrelacement(context,box.get('isupload')==true? home_view():upload_view());
+   pushrelacement(context,App_local_storage.getcash(App_local_storage.KIsupload)==true? home_view():upload_view());
     });
   }
   @override

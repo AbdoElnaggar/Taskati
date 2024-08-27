@@ -2,13 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/feature/home/home_view.dart';
 import 'package:taskati/feature/spalsh/splash_view.dart';
-import 'package:taskati/feature/upload/add_task.dart';
+import 'package:taskati/feature/add_task/add_task.dart';
 
 void main() async {
  await Hive.initFlutter();
  await Hive.openBox('userbox');
+ App_local_storage.init();
   runApp(const MainApp());
 }
 

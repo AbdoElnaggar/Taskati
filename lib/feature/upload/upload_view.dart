@@ -4,7 +4,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utlise/color.dart';
 import 'package:taskati/core/utlise/function.dart';
 import 'package:taskati/core/utlise/navigator.dart';
@@ -22,16 +23,16 @@ class _upload_viewState extends State<upload_view> {
   String? name;
   @override
   Widget build(BuildContext context) {
-    var box=Hive.box('userbox');
     return Scaffold(
       appBar: AppBar(
         actions: [
           TextButton(
             onPressed: (){
               if(path !=null  && name!=null){
-                box.put('name', name);
-                box.put('image', path);
-                box.put('isupload',true);
+                App_local_storage.cashdata(App_local_storage.Kname, name);
+                App_local_storage.cashdata(App_local_storage.Kimage,path);
+                App_local_storage.cashdata(App_local_storage.KIsupload,true);
+                
               ScaffoldMessenger.of(context).showSnackBar(
                 
                  SnackBar(

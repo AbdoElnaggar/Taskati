@@ -65,7 +65,7 @@ class _upload_viewState extends State<upload_view> {
               }
             },
             child: 
-            Text('Done  ',style: gettitlestyle(color: Appcolor.primary),),
+            Text('Done  ',style: gettitlestyle(context,color: Appcolor.primary),),
             
           )
         ],
@@ -106,7 +106,7 @@ class _upload_viewState extends State<upload_view> {
                     padding: EdgeInsets.all(12),
                     child: Text(
                       'Upload Image from Gallary',
-                      style: gettitlestyle(color: Colors.white),
+                      style: gettitlestyle(context,color: Colors.white),
                     ),
                   ),
                 ),
@@ -132,7 +132,7 @@ class _upload_viewState extends State<upload_view> {
                     padding: EdgeInsets.all(12),
                     child: Text(
                       'Upload Image from Camera',
-                      style: gettitlestyle(color: Colors.white),
+                      style: gettitlestyle(context,color: Colors.white),
                     ),
                   ),
                 ),

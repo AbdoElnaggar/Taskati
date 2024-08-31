@@ -34,8 +34,8 @@ class _splash_viewState extends State<splash_view> {
           mainAxisAlignment: MainAxisAlignment.center,
         children: [
         Lottie.asset('asset/logo.json'),
-          Text('Taskaiti',style: gettitlestyle(fontSize: 22)),
-          Text('it\'s To Get Organized',style: gettitlestyle()),
+          Text('Taskaiti',style: gettitlestyle(context,fontSize: 22)),
+          Text('it\'s To Get Organized',style: gettitlestyle(context,)),
         ],
       ),
       ),  

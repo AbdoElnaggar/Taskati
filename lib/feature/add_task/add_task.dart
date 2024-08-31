@@ -1,8 +1,11 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, unnecessary_import, prefer_const_literals_to_create_immutables, non_constant_identifier_names
+// ignore_for_file: camel_case_types, prefer_const_constructors, unnecessary_import, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unnecessary_string_interpolations
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:taskati/core/model/model_taskbox.dart';
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utlise/color.dart';
 import 'package:taskati/core/utlise/function.dart';
 import 'package:taskati/core/utlise/navigator.dart';
@@ -20,6 +23,8 @@ class _add_taskState extends State<add_task> {
   String Taskdate=DateFormat.yMd().format(DateTime.now());
   String Starttime=DateFormat('hh:mma').format(DateTime.now());
   String Endtime=DateFormat('hh:mma').format(DateTime.now().add(Duration(hours:1)));
+ var title_edeit=TextEditingController();
+ var note_edeit=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +36,7 @@ class _add_taskState extends State<add_task> {
             icon: Icon(Icons.arrow_back_ios)),
         title: Text(
           "Add taks",
-          style: gettitlestyle(
+          style: gettitlestyle(context,
             color: Appcolor.primary,
           ),
         ),
@@ -46,12 +51,13 @@ class _add_taskState extends State<add_task> {
               SizedBox(
                 height: 15,
               ),
-              Text('Title', style: gettitlestyle()),
+              Text('Title', style: gettitlestyle(context,)),
               SizedBox(
                 height: 15,
               ),
               TextFormField(
                 onTap: () {},
+                controller: title_edeit,
                 decoration: InputDecoration(
                   suffixIconColor: Colors.black,
                   border: OutlineInputBorder(),
@@ -61,13 +67,14 @@ class _add_taskState extends State<add_task> {
               SizedBox(
                 height: 15,
               ),
-              Text('Note', style: gettitlestyle()),
+              Text('Note', style: gettitlestyle(context,)),
               SizedBox(
                 height: 15,
               ),
               TextFormField(
                 maxLines: 4,
                 onTap: () {},
+                controller: note_edeit,
                 decoration: InputDecoration(
                   suffixIconColor: Colors.black,
                   border: OutlineInputBorder(),
@@ -80,7 +87,7 @@ class _add_taskState extends State<add_task> {
 
 
 
-              Text('Data', style: gettitlestyle()),
+              Text('Data', style: gettitlestyle(context,)),
               SizedBox(
                 height: 15,
               ),
@@ -104,7 +111,7 @@ class _add_taskState extends State<add_task> {
                   suffixIconColor: Colors.black,
                   border: OutlineInputBorder(),
                   hintText: (Taskdate),
-                  hintStyle: gettitlestyle(),
+                  hintStyle: gettitlestyle(context,),
                 ),
               ),
               Row(
@@ -117,7 +124,7 @@ class _add_taskState extends State<add_task> {
                       SizedBox(
                         height: 15,
                       ),
-                      Text('Start time', style: gettitlestyle()),
+                      Text('Start time', style: gettitlestyle(context,)),
                       SizedBox(
                         height: 5,
                       ),
@@ -138,7 +145,7 @@ class _add_taskState extends State<add_task> {
                           border: OutlineInputBorder(),
                           hintText: (Starttime),
                           
-                          hintStyle: gettitlestyle(),
+                          hintStyle: gettitlestyle(context,),
                         ),
                       )
                     ]),
@@ -151,7 +158,7 @@ class _add_taskState extends State<add_task> {
                     SizedBox(
                       height: 15,
                     ),
-                    Text('end time', style: gettitlestyle()),
+                    Text('end time', style: gettitlestyle(context,)),
                     SizedBox(
                       height: 5,
                     ),
@@ -170,7 +177,7 @@ class _add_taskState extends State<add_task> {
                         suffixIcon: Icon(Icons.watch_later_outlined),
                         suffixIconColor: Colors.black,
                         border: OutlineInputBorder(),
-                        hintStyle: gettitlestyle(),
+                        hintStyle: gettitlestyle(context,),
                         hintText: (Endtime),
                       ),
                     )
@@ -222,7 +229,23 @@ class _add_taskState extends State<add_task> {
                         backgroundColor: Appcolor.primary,
                         foregroundColor: Colors.white,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        String id="${title_edeit.text}-${DateTime.now()}";
+                        App_local_storage.cashtask(
+                          id,
+                           Taskmodel(
+                          id: id, 
+                          title: title_edeit.text, 
+                          descrption:note_edeit.text,
+                           date:Taskdate,
+                            start_time:Starttime,
+                             end_time: Endtime,
+                              color:colorindex,
+                               iscomplet:false,
+                               ));
+
+                              pushrelacement(context, home_view());
+                      },
                       child: Text(
                         'Creat Task',
                         style: TextStyle(color: Colors.white, fontSize: 16),

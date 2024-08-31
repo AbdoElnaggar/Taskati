@@ -33,8 +33,26 @@ class _profile_viewState extends State<profile_view> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
+     bool mode=App_local_storage.getcash(App_local_storage.kIsDarkMode)??false;
+    return Scaffold(
+      appBar: AppBar(
         actions: [
+
+         
+            // make dark and light button
+            IconButton(
+              onPressed: () {
+               
+             App_local_storage.cashdata(App_local_storage.kIsDarkMode, !mode);
+                
+                setState(() {});
+              },
+              icon: Icon(
+                mode ? Icons.light_mode : Icons.dark_mode,
+                color: Appcolor.primary,
+              ),
+            ),
+          
           TextButton(
             onPressed: (){
               if(path !=null  && name!=null){
@@ -74,7 +92,7 @@ class _profile_viewState extends State<profile_view> {
               }
             },
             child: 
-            Text('Done  ',style: gettitlestyle(color: Appcolor.primary),),
+            Text('Done  ',style: gettitlestyle(context,color: Appcolor.primary),),
             
           )
         ],
@@ -103,7 +121,8 @@ class _profile_viewState extends State<profile_view> {
                           onTap: () {
                             showModalBottomSheet(
                               context: context, builder:(context){
-                              
+                               backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor;
                               return Column(
                                   mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -112,20 +131,19 @@ class _profile_viewState extends State<profile_view> {
                                     margin: EdgeInsets.all(10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
-                                      color: Appcolor.primary,
-                                    ),
+                                      color:Theme.of(context).scaffoldBackgroundColor,                                    ),
                                     width: double.infinity,
                                     child: TextButton(onPressed: (){
                                     
                                       pickImage(true);
                                       Navigator.pop(context);
-                                    }, child: Text('Camera',style: gettitlestyle(fontSize: 33,color: Colors.white),)),
+                                    }, child: Text('Camera',style: gettitlestyle(context,fontSize: 33,color:Appcolor.primary),)),
                                   ),
                                    Container(
                                     padding: EdgeInsets.all(10),
                                     margin: EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                      color: Appcolor.primary,
+                                      color:Theme.of(context).scaffoldBackgroundColor,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     width: double.infinity,
@@ -133,7 +151,7 @@ class _profile_viewState extends State<profile_view> {
                                     
                                       pickImage(false);
                                       Navigator.pop(context);
-                                    }, child: Text('Gallary',style: gettitlestyle(fontSize: 33,color: Colors.white),)),
+                                    }, child: Text('Gallary',style: gettitlestyle(context,fontSize: 33,color:Appcolor.primary),)),
                                   ),
                                 ],
                               );
@@ -144,7 +162,7 @@ class _profile_viewState extends State<profile_view> {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle, color: Colors.white),
                               child: Icon(
-                                Icons.camera_alt_rounded,
+                                Icons.camera_alt_rounded,color: Appcolor.primary,
                                 size: 33,
                               )),
                         ))
@@ -162,7 +180,7 @@ class _profile_viewState extends State<profile_view> {
                     Expanded(
                         child: Text(
                       name!,
-                      style: gettitlestyle(color: Appcolor.primary),
+                      style: gettitlestyle(context,color: Appcolor.primary),
                     )),
                     IconButton.outlined(
                         onPressed: () {
@@ -179,7 +197,7 @@ class _profile_viewState extends State<profile_view> {
                                                 }),
                                                 
                                                 decoration: InputDecoration(
-                                                  
+                                                
                                                   errorBorder: OutlineInputBorder(
                                                     borderRadius: BorderRadius.circular(10),
                                                     borderSide: BorderSide(color: Appcolor.primary),
@@ -203,7 +221,7 @@ class _profile_viewState extends State<profile_view> {
                                                   backgroundColor: Appcolor.primary,
                                                 ),
                                                 onPressed: (){
-                                                  if(name!=null){
+                                                  if(name !=null){
                                                     App_local_storage.cashdata(App_local_storage.Kname, name);
                                                   }
                                                 }, 

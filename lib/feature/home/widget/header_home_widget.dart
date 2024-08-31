@@ -24,13 +24,14 @@ class header_home_widget extends StatelessWidget {
           children: [
             Text('Hellow ${App_local_storage.getcash(App_local_storage.Kname)}',
                 style:gettitlestyle(
-                  
+                  context,
                   color: Appcolor.primary,
                 )),
             Text('Have a Nice day',
                 style: gettitlestyle(
+                  context,
                   fontSize: 16,
-                  color: Appcolor.darkcolor,
+                  color:Appcolor.primary,
                 )),
           ],
         ),

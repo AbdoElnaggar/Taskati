@@ -25,14 +25,14 @@ class TodoHomeWidget extends StatelessWidget {
             children: [
               Text(DateFormat.yMMMMd().format(DateTime.now()),
                   style: gettitlestyle(
-                    fontSize: 20,
-                    color: Appcolor.darkcolor,
+                   context, fontSize: 20,
+                    color: Appcolor.primary,
                   )),
               Text('Today',
                   style: gettitlestyle(
-                    fontSize: 18,
+                context,    fontSize: 18,
                     fontwigth: FontWeight.bold,
-                    color: Appcolor.darkcolor,
+                    color: Appcolor.primary,
                   )),
 
                  

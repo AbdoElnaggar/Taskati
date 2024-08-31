@@ -24,7 +24,7 @@ class _custome_FormState extends State<custome_Form> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 15,),
-        Text(widget.text!,style:gettitlestyle()),
+        Text(widget.text!,style:gettitlestyle(context,)),
         SizedBox(height: 15,),
         TextFormField(
           onTap: (){
